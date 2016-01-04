@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include<malloc.h>
+#include<conio.h>
+struct node {
+	int num;
+	struct node *next;
+};
+
+void print_list(struct node *head)
+{
+	struct node *ptr = head;
+
+	printf("\          starting the linked list        \n");
+	if (ptr != NULL)
+	{
+		do{
+			printf("\n [%d] \n", ptr->num);
+			ptr = ptr->next;
+		} while (ptr != head);
+	}
+	printf("\n     ending the linked list    \n");
+
+
+}
+struct node *head = NULL;
+void createNode(int num1) {
+	struct node *ptr1 = (struct node *)malloc(sizeof(struct node));
+	struct node *temp = head;
+	ptr1->num = num1;
+	ptr1->next = head;
+	if (head != NULL)
+	{
+		while (temp->next != head)
+			temp = temp->next;
+		temp->next = ptr1;
+	}
+	else
+	{
+		ptr1->next = ptr1; 
+
+		head = ptr1;
+	}
+}
+
+
+
+
+
+int main(void) {
+
+	createNode(10);
+	createNode(20);
+	createNode(30);
+	createNode(40);
+	createNode(50);
+	print_list(head);
+	getch();
+	return 0;
+}
